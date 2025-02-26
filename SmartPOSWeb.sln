@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartPOSWeb", "SmartPOSWeb.csproj", "{A785ED26-C429-4A89-A7A2-43EE5EB73497}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A785ED26-C429-4A89-A7A2-43EE5EB73497}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A785ED26-C429-4A89-A7A2-43EE5EB73497}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A785ED26-C429-4A89-A7A2-43EE5EB73497}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A785ED26-C429-4A89-A7A2-43EE5EB73497}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E9164651-81E1-4EFA-86CB-19D361C30322}
+	EndGlobalSection
+EndGlobal
