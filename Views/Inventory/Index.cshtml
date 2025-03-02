@@ -1,0 +1,31 @@
+﻿@model List<SmartPOSWeb.Models.Inventory>
+
+<h2>Inventory List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Updated At</th>
+            <th>Avg Sales</th>
+            <th>Last Restock</th>
+            <th>Created At</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductId</td>
+                <td>@(item.Product?.ProductName ?? "Unknown")</td>
+                <td>@item.Quantity</td>
+                <td>@(item.UpdatedAt?.ToString("yyyy-MM-dd hh:mm tt", System.Globalization.CultureInfo.InvariantCulture))</td>
+                <td>@item.AvgSales</td>
+                <td>@item.LastRestockDate.ToString("yyyy-MM-dd")</td>
+                <td>@item.CreatedAt.ToString("yyyy-MM-dd")</td>
+            </tr>
+        }
+    </tbody>
+</table>

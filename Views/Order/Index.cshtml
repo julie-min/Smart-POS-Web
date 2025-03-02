@@ -1,0 +1,79 @@
+﻿@model SmartPOSWeb.Models.Order
+
+<h2 class="text-center my-4">🛒 New Order</h2>
+
+<div class="order-container p-4 shadow rounded bg-white">
+    <!-- 고객 선택 -->
+    <div class="order-section mb-4">
+        <h4 class="border-bottom pb-2">1. Customer Selection</h4>
+        <select id="customer" name="CustomerId" class="form-control">
+            <option value="1">New World</option>
+            <option value="2">PAK'n SAVE</option>
+            <option value="3">Woolworths</option>
+        </select>
+    </div>
+
+    <!-- 제품 선택 -->
+    <div class="order-section mb-4">
+        <h4 class="border-bottom pb-2">2. Product Selection</h4>
+        <button type="button" class="btn btn-primary" onclick="openProductPopup()">+ Add Product</button>
+    </div>
+
+    <!-- 주문 목록 -->
+    <div class="order-section mb-4">
+        <h4 class="border-bottom pb-2">🛍 Order Summary</h4>
+        <table class="table table-striped text-center order-summary-table">
+            <thead class="table-dark">
+                <tr>
+                    <th>Product No.</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="orderItems"></tbody>
+        </table>
+    </div>
+
+    <!-- 총 금액 -->
+    <div class="order-section mb-4 text-end">
+        <h4>💰 Total Price: <span id="totalPrice" class="fw-bold text-danger">0.00</span></h4>
+    </div>
+
+    <!-- 주문 버튼 -->
+    <div class="text-center">
+        <button type="button" class="btn btn-success px-4" onclick="placeOrder()">Place Order</button>
+    </div>
+</div>
+
+<!-- 제품 선택 모달 -->
+<div id="productPopup" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Select Product</h5>
+                <button type="button" class="btn-close" onclick="closeProductPopup()"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered text-center">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productList"></tbody>
+                </table>
+                <div id="pagination" class="text-center mt-3"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/order.js"></script>
+

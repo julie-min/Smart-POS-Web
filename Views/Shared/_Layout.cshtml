@@ -6,44 +6,118 @@
     <title>@ViewData["Title"] - SmartPOSWeb</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/SmartPOSWeb.styles.css" asp-append-version="true" />
+
+    <script src="~/plugins/jquery/jquery.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
+    <script src="~/plugins/toastr/toastr.min.js"></script>
+    <script>
+        toastr.options = {
+            positionClass: "toast-top-center",
+            closeButton: true,
+            progressBar: true,
+            timeOut: 3000
+        };
+    </script>
+
+
+    <style>
+        /* 왼쪽 사이드바 */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background-color: #343a40;
+            padding-top: 60px; /* 네비바 높이 고려 */
+        }
+
+            .sidebar a {
+                padding: 15px;
+                text-decoration: none;
+                font-size: 18px;
+                color: #ffffff;
+                display: block;
+            }
+
+                .sidebar a:hover {
+                    background-color: #495057;
+                }
+
+        /* 상단 네비게이션 바 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        /* 본문 영역 */
+        .content {
+            margin-left: 250px; /* 사이드바 너비만큼 여백 */
+            margin-top: 60px; /* 네비게이션 바 높이 고려 */
+            padding: 20px;
+            padding-bottom: 60px; /* 푸터와 겹치지 않도록 */
+        }
+
+        /* 푸터 고정 */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 250px; /* 사이드바 너비만큼 이동 */
+            width: calc(100% - 250px); /* 전체 너비에서 사이드바 제외 */
+            background-color: #f8f9fa;
+            padding: 10px 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SmartPOSWeb</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+
+    <!-- 상단 네비게이션 바 -->
+    <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">Julie's Smart POS Web</a>
+            <div class="ms-auto">
+                <a asp-controller="Account" class="btn btn-light">Log Out</a>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+        </div>
+    </nav>
+
+
+    <!-- 왼쪽 사이드바 -->
+    <div class="sidebar">
+        @* <a href="#">📌 How to Use..</a> *@
+        <a href="/Product">📦 Product</a>
+        <a href="/Inventory">🧮 Inventory</a>
+        <a href="/Order">🛒 Order </a>
+        <a href="#">📝 Invoice Generator</a>
+        <a href="/Sales">📊 Sales Management</a>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <!-- 본문 영역 -->
+    <div class="content">
         <div class="container">
-            &copy; 2025 - SmartPOSWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <footer class="footer text-muted">
+        <div class="container">
+            &copy; 2025 - Developed by Jiyun Min with ASP.NET ❤️
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+   
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    @* <script src="~/js/order.js"></script> *@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
