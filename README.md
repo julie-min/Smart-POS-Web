@@ -1,15 +1,21 @@
 # 🛍️ Smart POS .NET
 ## A lightweight Sales & Inventory management system <br> built with ASP.NET Core for small businesses
 
-<img src ="https://github.com/user-attachments/assets/be377622-c7ed-4127-821f-f555d1d8a16d" width="850"/>
-<img src ="https://github.com/user-attachments/assets/5f01b878-446b-4a84-a1e3-075d045f5fbb" width="850"/>
-<img src ="https://github.com/user-attachments/assets/eb9ac8c9-5019-4406-9af7-82fc85f8d1ed" width="850"/>
+| **Product Management** |
+| :---------------------: |
+| <img src ="https://github.com/user-attachments/assets/0643a475-11a0-4e19-abec-bf5958ba8443" width="800"/> |
+| **Inventory Management** |
+| <img src ="https://github.com/user-attachments/assets/ff550fc0-a6dc-4e18-b2f5-bbe81281c34c" width="800"/> |
+| **Order Management** |
+| <img src ="https://github.com/user-attachments/assets/39e4bea2-6944-44f0-8e76-1e17f949de3a" width="800"/> |
+| **Sales Management** |
+| <img src ="https://github.com/user-attachments/assets/aaa24ea2-a88f-4065-a284-b1c138b51554" width="800"/> |
+
 
 # 🧭 [Index](#index) <a name = "index"></a>
 
 - [Introduction](#introduction)
 - [Tech Skills](#tech)
-- [Output](#output)
 - [ERD](#erd)
 - [Features](#features)
 - [Pain Point](#point)
@@ -49,21 +55,6 @@
 
 <br>
 
-## 🔎 Output <a name = "output"></a>
-
-| **Product Management** |
-| :---------------------: |
-| <img src ="https://github.com/user-attachments/assets/0643a475-11a0-4e19-abec-bf5958ba8443" width="800"/> |
-| **Inventory Management** |
-| <img src ="https://github.com/user-attachments/assets/ff550fc0-a6dc-4e18-b2f5-bbe81281c34c" width="800"/> |
-| **Order Management** |
-| <img src ="https://github.com/user-attachments/assets/39e4bea2-6944-44f0-8e76-1e17f949de3a" width="800"/> |
-| **Sales Management** |
-| <img src ="https://github.com/user-attachments/assets/aaa24ea2-a88f-4065-a284-b1c138b51554" width="800"/> |
-
-
-<br>
-
 ## 📝 ERD <a name = "erd"></a>
 <img src="https://github.com/user-attachments/assets/5f1e7012-e136-46a7-b0cd-aa8a529b4652" width="800"/>
 
@@ -73,7 +64,9 @@
 
 
 <br>
-
+<!-- <img src ="https://github.com/user-attachments/assets/be377622-c7ed-4127-821f-f555d1d8a16d" width="850"/> -->
+<img src ="https://github.com/user-attachments/assets/5f01b878-446b-4a84-a1e3-075d045f5fbb" width="850"/>
+<img src ="https://github.com/user-attachments/assets/eb9ac8c9-5019-4406-9af7-82fc85f8d1ed" width="850"/>
 
 ## 🎯 Pain Point <a name = "point"></a>
 ## ✅ How to efficiently manage real-time inventory and order processing?
