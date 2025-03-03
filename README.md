@@ -1,5 +1,5 @@
 # 🛍️ Smart POS .NET
-## A lightweight sales & inventory management system built with ASP.NET Core
+## A lightweight Sales & Inventory management system <br> built with ASP.NET Core for small businesses
 
 <img src ="https://github.com/user-attachments/assets/be377622-c7ed-4127-821f-f555d1d8a16d" width="850"/>
 <img src ="https://github.com/user-attachments/assets/5f01b878-446b-4a84-a1e3-075d045f5fbb" width="850"/>
