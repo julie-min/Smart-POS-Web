@@ -2,139 +2,34 @@
     ViewData["Title"] = "Sales Management";
 }
 
-<h2 class="mb-4">📊 Sales Management</h2>
+<h2 class="mb-4">Sales Management</h2>
 
-<!-- 기간별 매출 조회 -->
+<!-- Daily Sales -->
 <div class="card mb-4">
-    <div class="card-header">📅 Sales by Date</div>
+    <div class="card-header">📅 Sales of this month</div>
     <div class="card-body">
-        <canvas id="salesChart"></canvas>
+        <div id="dailyChart"></div>
     </div>
 </div>
 
-<!-- 거래처별 매출 조회 -->
+<!-- Sales Compare by Customer -->
 <div class="card mb-4">
-    <div class="card-header">🏢 Sales by Customer</div>
+    <div class="card-header">🏢 Which customers generate the most sales?</div>
     <div class="card-body">
-        <canvas id="customerChart"></canvas>
+        <div id="customerChart"></div>
     </div>
 </div>
 
-<!-- 상품별 매출 조회 -->
+<!-- Sales by Products -->
 <div class="card">
-    <div class="card-header">📦 Sales by Product</div>
+    <div class="card-header">📦 Which product sales should we focus on?</div>
     <div class="card-body">
-        <canvas id="productChart"></canvas>
+        <div id="productChart"></div>
     </div>
 </div>
 
 @section Scripts {
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            loadSalesData();
-            loadCustomerSalesData();
-            loadProductSalesData();
-        });
-
-             function loadSalesData() {
-            $.ajax({
-                url: '/Sales/GetSalesData',
-                method: 'GET',
-                success: function (data) {
-                    console.log("📌 Sales Data:", data); // 🚀 데이터 확인용 로그 추가
-
-                    if (data.length === 0) {
-                        console.warn("⚠ No sales data found!");
-                        return;
-                    }
-
-                    var labels = data.map(item => item.Date); // 날짜 리스트
-                    var sales = data.map(item => item.TotalSales); // 매출 리스트
-
-                    var ctx = document.getElementById('salesChart').getContext('2d');
-                    new Chart(ctx, {
-                        type: 'bar', // 📌 막대 그래프
-                        data: {
-                            labels: labels, // 날짜 리스트
-                            datasets: [{
-                                label: 'Total Sales',
-                                data: sales, // 매출 리스트
-                                backgroundColor: 'rgba(76,132,255,0.7)', // 색상 조정
-                                borderColor: 'rgba(76,132,255,1)',
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            scales: {
-                                x: {
-                                    type: 'category', // 📌 time 대신 category 사용 (에러 방지)
-                                    title: {
-                                        display: true,
-                                        text: 'Date'
-                                    }
-                                },
-                                y: {
-                                    beginAtZero: true,
-                                    title: {
-                                        display: true,
-                                        text: 'Total Sales ($)'
-                                    }
-                                }
-                            }
-                        }
-                    });
-                },
-                error: function (xhr, status, error) {
-                    console.error("❌ Error fetching sales data:", error);
-                }
-            });
-        }
-
-        function loadCustomerSalesData() {
-            $.ajax({
-                url: '/Sales/GetCustomerSalesData',
-                method: 'GET',
-                success: function (data) {
-                    console.log("Customer Sales Data:", data);
-                    var ctx = document.getElementById('customerChart').getContext('2d');
-                    new Chart(ctx, {
-                        type: 'doughnut',
-                        data: {
-                            labels: data.map(item => `Customer ${item.CustomerId}`),
-                            datasets: [{
-                                label: 'Total Sales',
-                                data: data.map(item => item.TotalSales),
-                                backgroundColor: ['#4c84ff', '#29cc97', '#fec400', '#fdc506', '#ff6384']
-                            }]
-                        }
-                    });
-                }
-            });
-        }
-
-        function loadProductSalesData() {
-            $.ajax({
-                url: '/Sales/GetProductSalesData',
-                method: 'GET',
-                success: function (data) {
-                    console.log("Product Sales Data:", data);
-                    var ctx = document.getElementById('productChart').getContext('2d');
-                    new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: data.map(item => `Product ${item.ProductId}`),
-                            datasets: [{
-                                label: 'Total Sales',
-                                data: data.map(item => item.TotalSales),
-                                backgroundColor: '#4c84ff'
-                            }]
-                        }
-                    });
-                }
-            });
-        }
-    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="~/js/sales.js"></script>
 }
+

@@ -21,62 +21,69 @@ namespace SmartPOSWeb.Controllers
             return View();
         }
 
-        // 🚀 일자별 매출 조회
+        // daily sales
         [HttpGet]
         public async Task<JsonResult> GetSalesData()
         {
-            var salesData = await _context.OrderDetails
-                .Where(o => o.CreatedAt != null) // NULL 값 방지
-                .GroupBy(o => o.CreatedAt.Date) // 날짜 기준으로 그룹화
+            var startDate = DateTime.UtcNow.Date.AddDays(-5);
+            var endDate = DateTime.UtcNow.Date;
+
+            var salesData = await _context.Orders
+                .Where(o => o.CreatedAt.Date >= startDate && o.CreatedAt.Date <= endDate)
+                .GroupBy(o => o.CreatedAt.Date)
                 .Select(g => new
                 {
-                    Date = g.Key.ToString("yyyy-MM-dd"), // 날짜 변환
-                    TotalSales = g.Sum(o => o.Quantity * o.Price) // 매출 합계
+                    Date = g.Key,
+                    TotalSales = g.Sum(o => o.TotalPrice)
                 })
-                .OrderBy(g => g.Date) // 날짜순 정렬
+                .OrderBy(g => g.Date)
                 .ToListAsync();
 
-            Console.WriteLine($"Sales Data Count: {salesData.Count} rows");
-            foreach (var item in salesData)
+            var formattedSalesData = salesData.Select(s => new
             {
-                Console.WriteLine($"Date: {item.Date}, Sales: {item.TotalSales}");
-            }
+                Date = s.Date.ToString("MM-dd"), // 여기서 변환
+                TotalSales = s.TotalSales
+            });
 
-            return Json(salesData);
+            return Json(formattedSalesData);
         }
 
-        // 🚀 거래처별 매출 조회
+        // customer sales
         [HttpGet]
         public async Task<JsonResult> GetCustomerSalesData()
         {
-            var customerSales = await _context.OrderDetails
-                .GroupBy(o => o.OrderId) // OrderId 기준으로 그룹화
+            var customerSales = await _context.Orders
+                .GroupBy(o => o.CustomerId)
                 .Select(g => new
                 {
-                    CustomerId = g.Key, // OrderId를 고객으로 가정
-                    TotalSales = g.Sum(o => o.Quantity * o.Price)
+                    CustomerId = g.Key, 
+                    TotalSales = g.Sum(o => o.TotalPrice)
                 })
-                .OrderByDescending(g => g.TotalSales)
                 .ToListAsync();
 
             return Json(customerSales);
         }
 
-        // 🚀 상품별 매출 조회
-        [HttpGet]
+
+        // product sales
         public async Task<JsonResult> GetProductSalesData()
         {
             var productSales = await _context.OrderDetails
-                .GroupBy(o => o.ProductId) // ProductId 기준으로 그룹화
+                .Include(od => od.Product)
+                .GroupBy(od => new { od.ProductId, od.Product.ProductName })
                 .Select(g => new
                 {
-                    ProductId = g.Key,
-                    TotalSales = g.Sum(o => o.Quantity * o.Price)
+                    ProductId = g.Key.ProductId,
+                    ProductName = g.Key.ProductName,
+                    TotalSales = g.Sum(od => od.Quantity * od.Price)
                 })
                 .OrderByDescending(g => g.TotalSales)
+                .Take(10)
                 .ToListAsync();
 
             return Json(productSales);
         }
+
+
     }
 }

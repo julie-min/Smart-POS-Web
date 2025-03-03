@@ -12,6 +12,8 @@
 
     <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
     <script src="~/plugins/toastr/toastr.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
     <script>
         toastr.options = {
             positionClass: "toast-top-center",
@@ -94,8 +96,8 @@
         <a href="/Product">📦 Product</a>
         <a href="/Inventory">🧮 Inventory</a>
         <a href="/Order">🛒 Order </a>
-        <a href="#">📝 Invoice Generator</a>
         <a href="/Sales">📊 Sales Management</a>
+        <a href="#">📝 Invoice Generator</a>
     </div>
 
     <!-- 본문 영역 -->
@@ -114,10 +116,7 @@
         </div>
     </footer>
 
-   
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @* <script src="~/js/order.js"></script> *@
+  
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
